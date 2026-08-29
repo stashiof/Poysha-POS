@@ -28,7 +28,18 @@ async function generate() {
       if (fs.existsSync(dir)) {
         await sharp(svgBuffer).resize(d.size, d.size).png().toFile(path.join(dir, 'ic_launcher.png'));
         await sharp(svgBuffer).resize(d.size, d.size).png().toFile(path.join(dir, 'ic_launcher_round.png'));
+        await sharp(svgBuffer).resize(d.size, d.size).png().toFile(path.join(dir, 'ic_launcher_foreground.png'));
       }
+    }
+    
+    // Remove default Capacitor adaptive icon XMLs so Android uses the PNGs we just generated
+    const anyDpiDir = path.join(androidResDir, 'mipmap-anydpi-v26');
+    if (fs.existsSync(anyDpiDir)) {
+      fs.rmSync(anyDpiDir, { recursive: true, force: true });
+    }
+    const fgXmlPath = path.join(androidResDir, 'drawable-v24', 'ic_launcher_foreground.xml');
+    if (fs.existsSync(fgXmlPath)) {
+      fs.rmSync(fgXmlPath, { force: true });
     }
   }
   console.log('Icons generated successfully!');
