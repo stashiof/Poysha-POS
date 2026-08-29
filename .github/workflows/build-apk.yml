@@ -35,6 +35,9 @@ jobs:
       - name: Sync Capacitor Android
         run: npx cap sync android
 
+      - name: Generate App Icons
+        run: node generate-icons.js
+
       - name: Set up Java JDK 21
         uses: actions/setup-java@v4
         with:
