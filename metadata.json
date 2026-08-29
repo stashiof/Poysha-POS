@@ -1,0 +1,8 @@
+{
+  "name": "Poysha POS",
+  "description": "Poysha POS - Smart Point of Sale, Inventory, and Shop Management System",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
